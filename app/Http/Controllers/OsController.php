@@ -1,11 +1,13 @@
 <?php namespace osmanager\Http\Controllers;
 
 use osmanager\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Request;
+use osmanager\Os;
 
 class OsController extends Controller {
 
 	public function __construct(){
-		$this->middleware('auth');
+		$this->middleware('auth', ['except'=>['lista']]);
 	}
 
 	public function index(){
@@ -13,7 +15,14 @@ class OsController extends Controller {
 	}
 
 	public function formNovo(){
+		return view('os.cadastra');
+	}
 
+	public function cadastra(){
+		$params = Request::all();
+		if(isset($params['pago'])) $params['pago'] = true;
+		Os::create($params);
+		return redirect()->action('OsController@formNovo');
 	}
 
 	public function lista(){
