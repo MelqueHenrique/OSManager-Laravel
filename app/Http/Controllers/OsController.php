@@ -27,7 +27,6 @@ class OsController extends Controller {
 	}
 
 	public function lista(){
-
+		return view('os.lista')->with('osarray', Os::all());
 	}
-
 }
