@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: osmanager
+        psr4_prefix: osmanager
+        src_path: app
