@@ -2,6 +2,22 @@
 
 @section('content')
     <div class="container">
+
+        @if(old('nome') && empty($errors->all()))
+            <div class="alert alert-success fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <p>Os de <strong>{{old('nome')}}</strong> adicionada com sucesso.</p>
+            </div>
+        @endif
+
+        @if(!empty($errors->all()))
+            <div class="alert alert-danger fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            @foreach($errors->all() as $erro)
+                <p>{{$erro}}</p>
+            @endforeach
+            </div>
+        @endif
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
