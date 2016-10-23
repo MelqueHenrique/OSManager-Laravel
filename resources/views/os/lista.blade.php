@@ -11,6 +11,7 @@
                 <th class='text-center'>Nome</th>
                 <th class='text-center'>E-mail</th>
                 <th class='text-center'>Descrição</th>
+                <th class='text-center'>Categoria</th>
                 <th class='text-center'>Valor</td>
                 <th class='text-center'>Status</td>
                 <th class='text-center'>Alterar</td>
@@ -20,8 +21,9 @@
             <tr>
                 <td class="text-center">{{$os->id}}</td>
                 <td>{{$os->nome}}</td>
-                <td>{{$os->email}}</td>
+                <td class="text-center">{{$os->email}}</td>
                 <td>{{substr($os->descricao, 0, 35) . "..."}}</td>
+                <td class="text-center">{{$os->categoria->nome}}</td>
                 <td class="text-center">{{$os->preco}}</td>
                 <td class="text-center">{{$os->pago == 1 ? 'Pago' : 'Não Pago'}}</td>
                 <td class="text-center"><a class='btn btn-primary' href='#'>Alterar</a></td>
