@@ -51,6 +51,17 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="example-text-input" class="col-xs-2 text-right col-form-label">Categoria:</label>
+                                <div class="col-xs-10">
+                                    <select name="categoria_id" class="form-control">
+                                        @foreach($categorias as $categoria)
+                                            <option class="form-control" value="{{$categoria->id}}">{{$categoria->nome}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="example-text-input" class="col-xs-2 text-right col-form-label">Valor do serviço:</label>
                                 <div class="col-xs-10">
                                     <div class="input-group">

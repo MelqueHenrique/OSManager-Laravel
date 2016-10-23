@@ -4,6 +4,7 @@ use osmanager\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Request;
 use osmanager\Http\Requests\OsRequest;
 use osmanager\Os;
+use osmanager\Categoria;
 
 class OsController extends Controller {
 
@@ -16,7 +17,7 @@ class OsController extends Controller {
 	}
 
 	public function formNovo(){
-		return view('os.cadastra');
+		return view('os.cadastra')->with('categorias', Categoria::all());
 	}
 
 	public function cadastra(OsRequest $osRequest){
