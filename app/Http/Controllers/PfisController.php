@@ -5,17 +5,19 @@ use osmanager\Http\Controllers\ClienteController;
 class PfisController extends ClienteController {
 
 	private $cpf;
+	private $preco;
 
-	public function __construct($nome, $email, $cpf){
-		parent::__construct($nome, $email);
-		$this->cpf = $cpf;
+	public function __construct($params){
+		parent::__construct($params['nome'], $params['email']);
+		$this->cpf = $params['cpf'];
+		$this->preco = $params['preco'];
 	}
 
 	public function getCpf(){
 		return $this->cpf;
 	}
 
-	function calculaImposto($preco){
-		return $preco * 0.20;
+	function calculaImposto(){
+		return $this->preco * 0.20;
 	}
 }

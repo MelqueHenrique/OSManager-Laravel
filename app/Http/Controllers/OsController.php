@@ -17,13 +17,29 @@ class OsController extends Controller {
 	}
 
 	public function formNovo(){
-		return view('os.cadastra')->with('categorias', Categoria::all());
+		$tipos = array('pf'=>'Pessoa Física', 'pj'=>'Pessoa Jurídica');
+		return view('os.cadastra')->with(['categorias' => Categoria::all(), 'tipos' => $tipos]);
 	}
 
 	public function cadastra(OsRequest $osRequest){
 		$params = $osRequest->all();
-		if(isset($params['pago'])) $params['pago'] = true;
-		Os::create($params);
+		$cpf = '';
+		$cnpj = '';
+		if($params['tipo'] == 'pj'){
+			$cliente = new PjurController($params);
+			$cnpj = $cliente->getCnpj();
+		}else{
+			$cliente = new PfisController($params);
+			$cpf = $cliente->getCpf();
+		}
+
+		$pago = isset($params['pago']) ? 1 : 0;
+
+		Os::create(['nome'=>$cliente->getNome(), 'email'=>$cliente->getEmail(), 'descricao'=>$params['descricao'],
+			'preco'=>$params['preco'], 'pago'=>$pago, 'categoria_id'=>$params['categoria_id'],
+			'imposto'=>$cliente->calculaImposto(), 'cnpj'=>$cnpj, 'cpf'=>$cpf, 'tipo' => $params['tipo'],
+			'_token'=>$params['_token']]);
+
 		return redirect()->action('OsController@formNovo')->withInput(Request::only('nome'));
 	}
 

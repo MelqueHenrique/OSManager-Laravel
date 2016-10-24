@@ -37,6 +37,31 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="example-text-input" class="col-xs-2 text-right col-form-label">Tipo:</label>
+                                <div class="col-xs-10">
+                                    <select name="tipo" class="form-control">
+                                        @foreach($tipos as $key => $value)
+                                            <option class="form-control" value="{{$key}}">{{$value}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="example-text-input" class="col-xs-2 text-right col-form-label">CPF:</label>
+                                <div class="col-xs-10">
+                                    <input class="form-control" type="text" name="cpf" value="">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="example-text-input" class="col-xs-2 text-right col-form-label">CNPJ:</label>
+                                <div class="col-xs-10">
+                                    <input class="form-control" type="text" name="cnpj" value="">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="example-text-input" class="col-xs-2 text-right col-form-label">Email:</label>
                                 <div class="col-xs-10">
                                     <input class="form-control" type="email" value="" name="email">

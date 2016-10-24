@@ -23,7 +23,7 @@ class AdicionaIdCategoriaEmProdutos extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropCollumn('categoria_id');
+		Schema::dropColumn('categoria_id');
 	}
 
 }

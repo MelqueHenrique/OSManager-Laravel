@@ -4,17 +4,19 @@ use osmanager\Http\Controllers\ClienteController;
 
 class PjurController extends ClienteController {
 	private $cnpj;
+	private $preco;
 
-	public function __construct($nome, $email, $cnpj){
-		parent::__construct($nome, $email);
-		$this->cnpj = $cnpj;
+	public function __construct($params){
+		parent::__construct($params['nome'], $params['email']);
+		$this->cnpj = $params['cnpj'];
+		$this->preco = $params['preco'];
 	}
 
-	public function getCpf(){
+	public function getCnpj(){
 		return $this->cnpj;
 	}
 
-	function calculaImposto($preco){
-		return $preco * 0.10;
+	function calculaImposto(){
+		return $this->preco * 0.10;
 	}
 }
