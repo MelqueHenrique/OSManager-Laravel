@@ -23,8 +23,8 @@ class OsController extends Controller {
 
 	public function cadastra(OsRequest $osRequest){
 		$params = $osRequest->all();
-		$cpf = '';
-		$cnpj = '';
+		list($cpf, $cnpj) = array('', '');
+		
 		if($params['tipo'] == 'pj'){
 			$cliente = new PjurController($params);
 			$cnpj = $cliente->getCnpj();
@@ -45,5 +45,12 @@ class OsController extends Controller {
 
 	public function lista(){
 		return view('os.lista')->with('osarray', Os::all());
+	}
+
+	public function remove(){
+		$os = Os::find(Request::input('id'));
+		$nome = $os->nome;
+		$os->delete();
+		return redirect()->action('OsController@lista')->withInput(['nome'=>$nome]);
 	}
 }
