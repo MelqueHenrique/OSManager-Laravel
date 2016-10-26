@@ -4,6 +4,7 @@
 
 Route::get('/', 'OsController@index');
 Route::get('/os/novo', 'OsController@formNovo');
+Route::get('/os/altera/{id}', 'OsController@formAltera')->where('id', '[0-9]+');;
 Route::post('/os/novo', 'OsController@cadastra');
 Route::post('/os/remove', 'OsController@remove');
 Route::get('/os', 'OsController@lista');

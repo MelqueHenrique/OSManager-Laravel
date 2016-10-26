@@ -29,7 +29,7 @@
                 <td class="text-center">{{$os->categoria->nome}}</td>
                 <td class="text-center">{{$os->preco}}</td>
                 <td class="text-center">{{$os->pago == 1 ? 'Pago' : 'Não Pago'}}</td>
-                <td class="text-center"><a class='btn btn-primary' href='#'>Alterar</a></td>
+                <td class="text-center"><a class='btn btn-primary' href='{{action('OsController@formAltera', $os->id)}}'>Alterar</a></td>
                 <td class="text-center">
                     <form action="{{action('OsController@remove')}}" method="post">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">

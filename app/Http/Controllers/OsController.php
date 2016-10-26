@@ -53,4 +53,9 @@ class OsController extends Controller {
 		$os->delete();
 		return redirect()->action('OsController@lista')->withInput(['nome'=>$nome]);
 	}
+
+	public function formAltera($id){
+		$tipos = array('pf'=>'Pessoa Física', 'pj'=>'Pessoa Jurídica');
+		return view('os.edita')->with(['os'=>Os::find($id), 'tipos'=>$tipos, 'categorias'=>Categoria::all()]);
+	}
 }
