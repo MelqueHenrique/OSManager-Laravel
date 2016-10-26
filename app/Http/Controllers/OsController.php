@@ -58,4 +58,25 @@ class OsController extends Controller {
 		$tipos = array('pf'=>'Pessoa Física', 'pj'=>'Pessoa Jurídica');
 		return view('os.edita')->with(['os'=>Os::find($id), 'tipos'=>$tipos, 'categorias'=>Categoria::all()]);
 	}
+
+	public function edita(OsRequest $osRequest){
+		$params = $osRequest->all();
+		list($cpf, $cnpj) = array('', '');
+
+		if($params['tipo'] == 'pj'){
+			$cliente = new PjurController($params);
+			$cnpj = $cliente->getCnpj();
+		}else{
+			$cliente = new PfisController($params);
+			$cpf = $cliente->getCpf();
+		}
+
+		$pago = isset($params['pago']) ? 1 : 0;
+
+		Os::where('id', '=', $params['id'])->update(['nome'=>$cliente->getNome(), 'email'=>$cliente->getEmail(),
+			'descricao'=>$params['descricao'], 'preco'=>$params['preco'], 'pago'=>$pago, 'categoria_id'=>$params['categoria_id'],
+			'imposto'=>$cliente->calculaImposto(), 'cnpj'=>$cnpj, 'cpf'=>$cpf, 'tipo' => $params['tipo']]);
+
+		return redirect()->action('OsController@lista');
+	}
 }

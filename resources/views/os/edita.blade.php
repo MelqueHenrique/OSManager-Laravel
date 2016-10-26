@@ -20,7 +20,7 @@
         @endif
 
         @if(empty($os))
-            <p>Tá vazio</p>
+            <h1>Foi mal... Nossos macacos treinados não conseguiram encontrar sua ordem de serviço!</h1>
         @else
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -29,9 +29,10 @@
 
                     <div class="panel-body">
 
-                        <form action="" method="post">
+                        <form action="{{action('OsController@edita')}}" method="post">
 
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
+                            <input type="hidden" name="id" value="{{$os->id}}">
 
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-xs-2 text-right col-form-label">Cliente:</label>

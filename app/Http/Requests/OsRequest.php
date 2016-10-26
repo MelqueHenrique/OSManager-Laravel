@@ -24,7 +24,7 @@ class OsRequest extends Request {
 		return [
 			'nome' => 'required|max:250|min:3',
 			'email' => 'required|email',
-			'preco' => 'required|integer|min:0',
+			'preco' => 'required|numeric|min:0',
 			'descricao' => 'required|max:250',
 			'categoria_id' => 'required|integer'
 		];
